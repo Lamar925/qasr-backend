@@ -23,14 +23,14 @@ export const createBooking = async (req, res) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const isBeforeToday = (
-        checkIn.getFullYear() < today.getFullYear() ||
-        (checkIn.getFullYear() === today.getFullYear() && checkIn.getMonth() < today.getMonth()) ||
-        (checkIn.getFullYear() === today.getFullYear() && checkIn.getMonth() === today.getMonth() && checkIn.getDate() < today.getDate())
-    );
-
+    const isBeforeToday = checkIn < today;
     if (isBeforeToday) {
         return res.status(400).json({ message: getMessage("earlierDateBook", lang) });
+    }
+
+    // ✅ تحقق من أن check_out_date بعد check_in_date
+    if (checkOut <= checkIn) {
+        return res.status(400).json({ message: getMessage("invalidDateRange", lang) });
     }
 
     const availableRooms = await Room.findAll({
@@ -135,14 +135,14 @@ export const createBookingByRoomId = async (req, res) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const isBeforeToday = (
-        checkIn.getFullYear() < today.getFullYear() ||
-        (checkIn.getFullYear() === today.getFullYear() && checkIn.getMonth() < today.getMonth()) ||
-        (checkIn.getFullYear() === today.getFullYear() && checkIn.getMonth() === today.getMonth() && checkIn.getDate() < today.getDate())
-    );
-
+    const isBeforeToday = checkIn < today;
     if (isBeforeToday) {
         return res.status(400).json({ message: getMessage("earlierDateBook", lang) });
+    }
+
+    // ✅ تحقق من أن check_out_date بعد check_in_date
+    if (checkOut <= checkIn) {
+        return res.status(400).json({ message: getMessage("invalidDateRange", lang) });
     }
 
     const room = await Room.findByPk(room_id);
