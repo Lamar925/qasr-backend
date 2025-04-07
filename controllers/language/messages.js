@@ -128,7 +128,8 @@ const messages = {
         noPaymentsFound: "No payments were found",
         mobileExists: "Mobile number is already exists",
         noPasswordSet: "Your account was created using Google or Facebook. Please use the same provider to log in or reset your password.",
-        roomInactive: "Room inactive now"
+        roomInactive: "Room inactive now",
+        invalidDateRange:"Invalid Date Range"
     },
     ar: {
         emailExists: "البريد الإلكتروني موجود بالفعل",
@@ -259,7 +260,8 @@ const messages = {
         noPaymentsFound: "لم يتم العثور على أي مدفوعات",
         mobileExists: "رقم الهاتف المسجل موجود بالفعل",
         noPasswordSet: "تم إنشاء حسابك باستخدام Google أو Facebook. يرجى استخدام نفس المزود لتسجيل الدخول أو إعادة تعيين كلمة المرور.",
-        roomInactive: "الغرفة غير متاحة حاليا"
+        roomInactive: "الغرفة غير متاحة حاليا",
+        invalidDateRange:"تاريخ غير صالح"
     }
 };
 
